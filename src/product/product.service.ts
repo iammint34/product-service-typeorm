@@ -38,24 +38,6 @@ export class productService {
         }
     }
 
-    async updateStatusToActive(uuid: string[]): Promise<Product[]> {
-        try {
-            await this.productRepository.update({ uuid: In([uuid]) }, { status: 'ACTIVE' });
-            return await this.productRepository.find({ where: { uuid: In([uuid]) } });
-        } catch (error) {
-            throw new ForbiddenException('Unable to Save Product');
-        }
-    }
-
-    async updateStatusToInactive(uuid: string[]): Promise<Product[]> {
-        try {
-            await this.productRepository.update({ uuid: In([uuid]) }, { status: 'INACTIVE' });
-            return await this.productRepository.find({ where: { uuid: In([uuid]) } });
-        } catch (error) {
-            throw new ForbiddenException('Unable to Save Product');
-        }
-    }
-
     async deleteRecord(uuid: string[]) {
         try {
             await this.productRepository.delete({ uuid: In([uuid]) });
